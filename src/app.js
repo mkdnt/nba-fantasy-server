@@ -17,7 +17,7 @@ app.use(express.json());
 // app.use("/anendpoint", someRouter);
 
 app.get('/', (req, res) => {
-  res.send('Hello, boilerplate!')
+  res.send('Hello, NBA Fantasy Thing!')
 });
 
 app.use(function errorHandler(error, req, res, next) {
