@@ -1,65 +1,65 @@
-// const { expect } = require("chai");
-// const knex = require("knex");
-// const supertest = require("supertest");
-// const app = require("../src/app");
-// const { makeArticlesArray, makeMaliciousArticle } = require("./articles.fixtures");
+const { expect } = require("chai");
+const knex = require("knex");
+const supertest = require("supertest");
+const app = require("../src/app");
+const { makePostsArray, makeMaliciousPost } = require("./posts.fixtures");
 
-// describe("Article endpoints", () => {
-//   let db;
+describe("Posts endpoints", () => {
+  let db;
 
-//   before("make knex instance", () => {
-//     db = knex({
-//       client: "pg",
-//       connection: process.env.TEST_DATABASE_URL
-//     });
-//     app.set("db", db);
-//   });
+  before("make knex instance", () => {
+    db = knex({
+      client: "pg",
+      connection: process.env.TEST_DATABASE_URL
+    });
+    app.set("db", db);
+  });
 
-//   before("clean the table", () => db("blogful_articles").truncate());
+  before("clean the table", () => db('posts').truncate());
 
-//   after("disconnect from db", () => db.destroy());
+  after("disconnect from db", () => db.destroy());
 
-//   afterEach("cleanup", () => db("blogful_articles").truncate());
+  afterEach("cleanup", () => db('posts').truncate());
 
-//   describe("GET /articles", () => {
-//     context(`Given no articles`, () => {
-//       it(`responds with 200 and an empty list`, () => {
-//         return supertest(app).get("/articles").expect(200, []);
-//       });
-//     });
+  describe("GET /api/posts", () => {
+    context(`Given no posts`, () => {
+      it(`responds with 200 and an empty list`, () => {
+        return supertest(app).get("/api/posts").expect(200, []);
+      });
+    });
 
-//     context("Given there are articles in the database", () => {
-//       const testArticles = makeArticlesArray();
+    context("Given there are posts in the database", () => {
+      const testPosts = makePostsArray();
 
-//       beforeEach("insert articles", () => {
-//         return db.into("blogful_articles").insert(testArticles);
-//       });
+      beforeEach("insert posts", () => {
+        return db.into('posts').insert(testPosts);
+      });
 
-//       it("GET /articles responds with 200 and all articles", () => {
-//         return supertest(app).get("/articles").expect(200, testArticles);
-//       });
-//     });
+      it("responds with 200 and all posts", () => {
+        return supertest(app).get('/api/posts').expect(200, testPosts);
+      });
+    });
 
-//     context(`Given an XSS attack article`, () => {
-//       const maliciousArticle = makeMaliciousArticle();
+    context(`Given an XSS attack post`, () => {
+      const maliciousPost = makeMaliciousPost();
       
-//       beforeEach('insert malicious article', () => {
-//         return db
-//           .into('blogful_articles')
-//           .insert([ maliciousArticle ]);
-//       });
+      beforeEach('insert malicious post', () => {
+        return db
+          .into('posts')
+          .insert([ maliciousPost ]);
+      });
       
-//       it('removes XSS attack content', () => {
-//         return supertest(app)
-//           .get(`/articles`)
-//           .expect(200)
-//           .expect(res => {
-//             expect(res.body[0].title).to.eql('Naughty naughty very naughty &lt;script&gt;alert(\"xss\");&lt;/script&gt;');
-//             expect(res.body[0].content).to.eql(`Bad image <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.`);
-//           });
-//       });
-//     });
-//   });
+      it('removes XSS attack content', () => {
+        return supertest(app)
+          .get(`/api/posts`)
+          .expect(200)
+          .expect(res => {
+            expect(res.body[0].title).to.eql(`Beware this malicious thing &lt;script&gt;alert("xss");&lt;/script&gt;`);
+            expect(res.body[0].content).to.eql(`Pure evil vile image <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.`);
+          });
+      });
+    });
+  });
 
 //   describe("POST /articles", () => {
 //     it("creates an articles, responds with 201 and the new article", function() {
