@@ -24,8 +24,8 @@ describe("Posts endpoints", () => {
   describe("GET /api/posts", () => {
     context(`Given no posts`, () => {
       it(`responds with 200 and an empty list`, () => {
-        return supertest(app).get("/api/posts").expect(200, []);
-      });
+        return supertest(app).get('/api/posts').expect(200, []);
+      })
     });
 
     context("Given there are posts in the database", () => {
@@ -37,26 +37,6 @@ describe("Posts endpoints", () => {
 
       it("responds with 200 and all posts", () => {
         return supertest(app).get('/api/posts').expect(200, testPosts);
-      });
-    });
-
-    context(`Given an XSS attack post`, () => {
-      const maliciousPost = makeMaliciousPost();
-      
-      beforeEach('insert malicious post', () => {
-        return db
-          .into('posts')
-          .insert([ maliciousPost ]);
-      });
-      
-      it('removes XSS attack content', () => {
-        return supertest(app)
-          .get(`/api/posts`)
-          .expect(200)
-          .expect(res => {
-            expect(res.body[0].title).to.eql(`Beware this malicious thing &lt;script&gt;alert("xss");&lt;/script&gt;`);
-            expect(res.body[0].content).to.eql(`Pure evil vile image <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.`);
-          });
       });
     });
   });
@@ -105,7 +85,7 @@ describe("Posts endpoints", () => {
       });
     });
 
-    context(`When an XSS attack article is put in, article is sanitized right away`, () => {
+    context(`When an XSS attack article is put in, post is sanitized right away`, () => {
       const {maliciousPost, expectedPost} = makeMaliciousPost();
       
       it('removes XSS attack content', () => {
@@ -148,7 +128,7 @@ describe("Posts endpoints", () => {
     });
 
     context(`Given an XSS attack post`, () => {
-      const maliciousPost = makeMaliciousPost();
+      const { maliciousPost, expectedPost } = makeMaliciousPost();
       
       beforeEach('insert malicious post', () => {
         return db
@@ -161,8 +141,8 @@ describe("Posts endpoints", () => {
           .get(`/api/posts/${maliciousPost.id}`)
           .expect(200)
           .expect(res => {
-            expect(res.body[0].title).to.eql(`Beware this malicious thing &lt;script&gt;alert("xss");&lt;/script&gt;`);
-            expect(res.body[0].content).to.eql(`Pure evil vile image <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.`);
+            expect(res.body.title).to.eql(expectedPost.title)
+            expect(res.body.content).to.eql(expectedPost.content)
           });
       });
     });
@@ -247,7 +227,7 @@ describe("Posts endpoints", () => {
                 return supertest(app)
                     .patch(`/api/posts/${idToUpdate}`)
                     .send({irrelevantField: 'foo'})
-                    .expect(400, { error: {message: `Request body must contain title and content`}})
+                    .expect(400, { error: {message: `Request body must contain either 'title' or 'content'`}})
             })
 
             it('responds with 204 when updating only a subset of the fields', () => {

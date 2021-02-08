@@ -5,5 +5,5 @@ CREATE TABLE players (
     position TEXT NOT NULL,
     nba_city TEXT NOT NULL,
     nba_team TEXT NOT NULL,
-    team_id INTEGER REFERENCES teams(id) NOT NULL,
+    team_id INTEGER REFERENCES teams(id) NOT NULL
 );

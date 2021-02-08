@@ -11,6 +11,10 @@ postRouter
     .route('/')
     .get((req, res, next) => {
         PostService.getAllPosts(req.app.get('db'))
+            .then(posts => {
+                res.json(posts)
+            })
+            .catch(next)
     })
     .post(jsonParser, (req, res, next) => {
         const { title, content } = req.body
