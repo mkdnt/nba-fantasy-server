@@ -2,33 +2,32 @@ const { expect } = require("chai");
 const knex = require("knex");
 const supertest = require("supertest");
 const app = require("../src/app");
-const { makeUsersArray, makeAuthHeader, seedUsers } = require("./users.fixtures");
+const helpers = require("./users.fixtures");
 const bcrypt = require('bcryptjs');
 
-describe('User Endpoints', function () {
+describe.only('User Endpoints', function () {
   let db
 
-  const testUsers = makeUsersArray()
+  const testUsers = helpers.makeUsersArray()
   const testUser = testUsers[0]
 
-  before("make knex instance", () => {
-    db = knex({
-      client: "pg",
-      connection: process.env.TEST_DATABASE_URL
-    });
-    app.set("db", db);
-  });
+  before('make knex instance', () => {
+    db = helpers.makeKnexInstance()
+    app.set('db', db)
+  })
 
-  before("clean the table", () => db('users').truncate());
+  after('disconnect from db', () => db.destroy())
 
-  after("disconnect from db", () => db.destroy());
+  before('cleanup', () => helpers.cleanTables(db))
 
-  afterEach("cleanup", () => db('users').truncate());
+  afterEach('cleanup', () => helpers.cleanTables(db))
+
+  /**
+   * @description Register a user and populate their fields
+   **/
 
   describe(`POST /api/user`, () => {
-    beforeEach("insert users", () => {
-        return db.into('users').insert(testUsers);
-      });
+    beforeEach('insert users', () => helpers.seedUsers(db, testUsers))
 
     const requiredFields = ['username', 'password', 'firstname', 'lastname', 'email']
     
@@ -41,18 +40,18 @@ describe('User Endpoints', function () {
             email: 'test email'
         }
 
-        it(`responds with 400 error when '${field}' is missing`, () => {
+        it(`responds with 400 error when ${field} is missing`, () => {
             delete registerAttemptBody[field]
 
             return supertest(app)
                 .post('api/user')
-                .send(registerAttempBody)
+                .send(registerAttemptBody)
                 .expect(400, {error: `Missing '${field}' in request body`})
         })
     })
 
     it(`responds with 400 and 'Password must be 8 characters or longer' when empty password`, () => {
-        const userShortPassword = {
+        const shortPassword = {
             username: 'test username',
             password: '1234567',
             firstname: 'test firstname',
@@ -61,12 +60,12 @@ describe('User Endpoints', function () {
         }
         return supertest(app)
             .post('api/user')
-            .send(userShortPassword)
+            .send(shortPassword)
             .expect(400, {error: 'Password must be 8 characters or longer'})
     })
 
     it(`responds with 400 and 'Password must be 72 characters or less' when long password`, () => {
-        const userLongPassword = {
+        const longPassword = {
             username: 'test username',
             password: '*'.repeat(73),
             firstname: 'test firstname',
@@ -75,12 +74,12 @@ describe('User Endpoints', function () {
         }
         return supertest(app)
             .post('api/user')
-            .send(userLongPassword)
+            .send(longPassword)
             .expect(400, {error: 'Password must be 72 characters or less'})
     })
 
     it(`responds with 400 when password starts with spaces`, () => {
-        const userPasswordStartsSpaces = {
+        const passwordStartsSpaces = {
             username: 'test username',
             password: ' 1Aa!2Bb@',
             firstname: 'test firstname',
@@ -89,12 +88,12 @@ describe('User Endpoints', function () {
         }
         return supertest(app)
             .post('/api/user')
-            .send(userPasswordStartsSpaces)
+            .send(passwordStartsSpaces)
             .expect(400, {error: 'Password must not start or end with empty spaces'})
     })
 
     it(`responds with 400 when password ends with spaces`, () => {
-        const userPasswordEndsSpaces = {
+        const passwordEndsSpaces = {
             username: 'test username',
             password: '1Aa!2Bb@ ',
             firstname: 'test firstname',
@@ -103,7 +102,7 @@ describe('User Endpoints', function () {
         }
         return supertest(app)
             .post('/api/user')
-            .send(userPasswordEndsSpaces)
+            .send(passwordEndsSpaces)
             .expect(400, {error: 'Password must not start or end with empty spaces'})
     })
 
