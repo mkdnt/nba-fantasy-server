@@ -3,6 +3,9 @@ const bcrypt = require('bcryptjs');
 const REGEX_UPPER_LOWER_NUMBER_SPECIAL = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]+/
 
 const UserService = {
+    getUserById(knex, id) {
+        return knex.from('users').select('*').where('id', id).first()
+    },
     hasUserWithUsername(db, username) {
         return db('users')
             .where({username})
@@ -38,6 +41,7 @@ const UserService = {
         return {
             id: user.id,
             username: user.username,
+            teamname: user.teamname,
             firstname: user.firstname,
             lastname: user.lastname,
             email: user.email

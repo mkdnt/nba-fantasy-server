@@ -26,7 +26,7 @@ describe.only('User Endpoints', function () {
    * @description Register a user and populate their fields
    **/
 
-  describe(`POST /api/user`, () => {
+  describe(`POST /api/users`, () => {
     beforeEach('insert users', () => helpers.seedUsers(db, testUsers))
 
     const requiredFields = ['username', 'password', 'firstname', 'lastname', 'email']
@@ -87,7 +87,7 @@ describe.only('User Endpoints', function () {
             email: 'test email'
         }
         return supertest(app)
-            .post('/api/user')
+            .post('/api/users')
             .send(passwordStartsSpaces)
             .expect(400, {error: 'Password must not start or end with empty spaces'})
     })
@@ -101,7 +101,7 @@ describe.only('User Endpoints', function () {
             email: 'test email'
         }
         return supertest(app)
-            .post('/api/user')
+            .post('/api/users')
             .send(passwordEndsSpaces)
             .expect(400, {error: 'Password must not start or end with empty spaces'})
     })
@@ -115,7 +115,7 @@ describe.only('User Endpoints', function () {
             email: 'test email'
         }
         return supertest(app)
-            .post('/api/user')
+            .post('/api/users')
             .send(userPasswordNotComplex)
             .expect(400, {error: 'Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character'})
     })
@@ -129,7 +129,7 @@ describe.only('User Endpoints', function () {
             email: 'test email'
         }
         return supertest(app)
-            .post('/api/user')
+            .post('/api/users')
             .send(duplicateUser)
             .expect(400, {error: 'Username is already taken'})
     })
@@ -144,7 +144,7 @@ describe.only('User Endpoints', function () {
             email: 'test email'
             }
             return supertest(app)
-                .post('/api/user')
+                .post('/api/users')
                 .send(newUser)
                 .expect(201)
                 .expect(res => {
@@ -154,7 +154,7 @@ describe.only('User Endpoints', function () {
                     expect(res.body.lastname).to.eql(newUser.lastname)
                     expect(res.body.email).to.eql(newUser.email)
                     expect(res.body).to.not.have.property('password')
-                    expect(res.headers.location).to.eql(`/api/user/${res.body.id}`)
+                    expect(res.headers.location).to.eql(`/api/users/${res.body.id}`)
                 })
         })
 
@@ -167,7 +167,7 @@ describe.only('User Endpoints', function () {
             email: 'test email'
             }
             return supertest(app)
-                .post('/api/user')
+                .post('/api/users')
                 .send(newUser)
                 .expect(res => 
                     db
