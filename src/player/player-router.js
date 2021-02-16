@@ -42,6 +42,26 @@ playerRouter
     })
 
 playerRouter
+  .route('/:user_id')
+    .all((req, res, next) => {
+        PlayerService.getUserPlayers(req.app.get('db'), req.params.user_id)
+            .then(players => {
+                res.json(players)
+            })
+            .catch(next)
+    })
+    .get((req, res, next) => {
+        res.json({
+            id: res.player.id,
+            first_name: res.player.first_name,
+            last_name: res.player.last_name,
+            team: res.player.team,
+            position: res.player.position,
+            user_id: res.player.user_id
+        });
+    })
+
+playerRouter
     .route('/:player_id')
     .delete((req, res, next) => {
         PlayerService.deletePlayer(req.app.get('db'), req.params.player_id)

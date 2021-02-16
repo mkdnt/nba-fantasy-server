@@ -4,19 +4,22 @@ function makePostsArray() {
       id: 1,
       title: 'Test Post 1',
       content: 'Test content for Post 1. Lorem ipsum, etc.',
-      date_published: '2029-01-22T16:28:32.615Z'
+      date_published: '2029-01-22T16:28:32.615Z',
+      user_id: 1
     },
     {
       id: 2,
       title: 'Test Post 2',
       content: 'Test content for Post 2. We are thinking of lorem ipsum again.',
-      date_published: '2100-05-22T16:28:32.615Z'
+      date_published: '2100-05-22T16:28:32.615Z',
+      user_id: 1
     },
     {
       id: 3,
       title: 'Test Post 3',
       content: 'Test content for Post 3. Any more lorem ipsum available?',
-      date_published: '1919-12-22T16:28:32.615Z'
+      date_published: '1919-12-22T16:28:32.615Z',
+      user_id: 1
     },
   ];
 };

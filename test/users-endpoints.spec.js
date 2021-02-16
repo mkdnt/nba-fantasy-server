@@ -26,6 +26,26 @@ describe.only('User Endpoints', function () {
    * @description Register a user and populate their fields
    **/
 
+    describe("GET /api/users", () => {
+        context(`Given no users`, () => {
+        it(`responds with 200 and an empty list`, () => {
+            return supertest(app).get('/api/users').expect(200, []);
+        })
+        });
+
+        context("Given there are users in the database", () => {
+        const testUsers = makeusersArray();
+
+        beforeEach("insert users", () => {
+            return db.into('users').insert(testUsers);
+        });
+
+        it("responds with 200 and all users", () => {
+            return supertest(app).get('/api/users').expect(200, testUsers);
+        });
+        });
+    });
+
   describe(`POST /api/users`, () => {
     beforeEach('insert users', () => helpers.seedUsers(db, testUsers))
 

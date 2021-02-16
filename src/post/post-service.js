@@ -12,7 +12,9 @@ const PostService = {
                 return rows[0]
             })
     },
-
+    getUserPosts(knex, id) {
+        return knex.from('posts').select('*').where('user_id', id)
+    },
     getPostById(knex, id) {
         return knex.from('posts').select('*').where('id', id).first()
     },

@@ -254,4 +254,24 @@ describe("Posts endpoints", () => {
             })
         })
     })
+
+    describe("GET /api/posts/:user_id", () => {
+
+      context("Given there are posts in the database by the specified user_id", () => {
+      const testPosts = makePostsArray();
+
+      beforeEach("insert posts", () => {
+        return db.into('posts').insert(testPosts);
+      });
+
+      it('GET /api/posts/:user_id responds with 200 and the specified post', () => {
+        const user_id = 1
+        const expectedPosts = testPosts.filter(post => post.user_id === user_id);
+        return supertest(app)
+          .get(`/api/posts/${user_id}`)
+          .expect(200, expectedPosts);
+      });
+    });
+
+    });
 });

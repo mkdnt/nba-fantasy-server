@@ -42,6 +42,25 @@ postRouter
     })
 
 postRouter
+  .route('/:user_id')
+    .all((req, res, next) => {
+        PostService.getUserPosts(req.app.get('db'), req.params.user_id)
+            .then(posts => {
+                res.json(posts)
+            })
+            .catch(next)
+    })
+    .get((req, res, next) => {
+        res.json({
+            id: res.post.id,
+            title: xss(res.post.title),
+            content: xss(res.post.content),
+            date_published: res.post.date_published,
+            user_id: res.post.user_id
+        });
+    })
+
+postRouter
     .route('/:post_id')
     .all((req, res, next) => {
         PostService.getPostById(req.app.get('db'), req.params.post_id)

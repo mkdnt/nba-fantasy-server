@@ -11,6 +11,9 @@ const PlayerService = {
                 return rows[0]
             })
     },
+    getUserPlayers(knex, id) {
+        return knex.from('players').select('*').where('user_id', id)
+    },
     deletePlayer(knex, id) {
         return knex('players').where({id}).delete()
     },
