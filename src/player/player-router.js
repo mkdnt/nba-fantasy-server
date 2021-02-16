@@ -17,8 +17,8 @@ playerRouter
             .catch(next)
     })
     .post(jsonParser, (req, res, next) => {
-        const { nba_id, user_id } = req.body
-        const newPlayer = { nba_id, user_id }
+        const { first_name, last_name, team, position, user_id } = req.body
+        const newPlayer = { first_name, last_name, team, position, user_id }
 
         for (const [key, value] of Object.entries(newPlayer)) {
             if (value == null) {
