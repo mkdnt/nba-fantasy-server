@@ -1,3 +1,4 @@
+const { resolveSoa } = require('dns')
 const express = require('express')
 const path = require('path')
 const UserService = require('./user-service')
@@ -45,7 +46,27 @@ userRouter
             date_published: res.post.date_published,
             user_id: res.post.user_id
         });
-    })    
+    })
+    
+userRouter
+  .route('/:user_id/players')
+    .all((req, res, next) => {
+        UserService.getUserPlayers(req.app.get('db'), req.params.user_id)
+            .then(players => {
+                res.json(players)
+            })
+            .catch(next)
+    })
+    .get((req, res, next) => {
+        res.json({
+            id: res.player.id,
+            first_name: res.player.first_name,
+            last_name: res.player.last_name,
+            team: res.player.team,
+            position: res.player.position,
+            user_id: res.player.user_id
+        });
+    })
 
 userRouter
     .get('/', (req, res, next) => {

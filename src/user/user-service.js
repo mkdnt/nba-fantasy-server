@@ -12,6 +12,9 @@ const UserService = {
     getUserPosts(knex, id) {
         return knex.from('posts').select('*').where('user_id', id)
     },
+    getUserPlayers(knex, id) {
+        return knex.from('players').select('*').where('user_id', id)
+    },
     hasUserWithUsername(db, username) {
         return db('users')
             .where({username})

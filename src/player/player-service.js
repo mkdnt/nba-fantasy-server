@@ -2,9 +2,6 @@ const PlayerService = {
     getAllPlayers(knex) {
         return knex.select('*').from('players')
     },
-    getUserPlayers(knex, id) {
-        return knex.from('userPlayer').select('*').where()
-    },
     insertPlayer(knex, newPlayer) {
         return knex
             .insert(newPlayer)
@@ -14,7 +11,9 @@ const PlayerService = {
                 return rows[0]
             })
     },
-
+    deletePlayer(knex, id) {
+        return knex('players').where({id}).delete()
+    },
 };
 
 module.exports = PlayerService

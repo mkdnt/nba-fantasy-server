@@ -41,4 +41,14 @@ playerRouter
             .catch(next)
     })
 
+playerRouter
+    .route('/:player_id')
+    .delete((req, res, next) => {
+        PlayerService.deletePlayer(req.app.get('db'), req.params.player_id)
+            .then(() => {
+                res.status(204).end();
+            })
+            .catch(next);
+    })
+
 module.exports = playerRouter;
