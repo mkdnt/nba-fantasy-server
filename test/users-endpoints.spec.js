@@ -49,14 +49,14 @@ describe.only('User Endpoints', function () {
   describe(`POST /api/users`, () => {
     beforeEach('insert users', () => helpers.seedUsers(db, testUsers))
 
-    const requiredFields = ['username', 'password', 'firstname', 'lastname', 'email']
+    const requiredFields = ['username', 'password', 'first_name', 'last_name', 'email']
     
     requiredFields.forEach(field => {
         const registerAttemptBody = {
             username: 'test username',
             password: 'test password',
-            firstname: 'test firstname',
-            lastname: 'test lastname',
+            first_name: 'test first_name',
+            last_name: 'test last_name',
             email: 'test email'
         }
 
@@ -74,8 +74,8 @@ describe.only('User Endpoints', function () {
         const shortPassword = {
             username: 'test username',
             password: '1234567',
-            firstname: 'test firstname',
-            lastname: 'test lastname',
+            first_name: 'test first_name',
+            last_name: 'test last_name',
             email: 'test email'
         }
         return supertest(app)
@@ -88,8 +88,8 @@ describe.only('User Endpoints', function () {
         const longPassword = {
             username: 'test username',
             password: '*'.repeat(73),
-            firstname: 'test firstname',
-            lastname: 'test lastname',
+            first_name: 'test first_name',
+            last_name: 'test last_name',
             email: 'test email'
         }
         return supertest(app)
@@ -102,8 +102,8 @@ describe.only('User Endpoints', function () {
         const passwordStartsSpaces = {
             username: 'test username',
             password: ' 1Aa!2Bb@',
-            firstname: 'test firstname',
-            lastname: 'test lastname',
+            first_name: 'test first_name',
+            last_name: 'test last_name',
             email: 'test email'
         }
         return supertest(app)
@@ -116,8 +116,8 @@ describe.only('User Endpoints', function () {
         const passwordEndsSpaces = {
             username: 'test username',
             password: '1Aa!2Bb@ ',
-            firstname: 'test firstname',
-            lastname: 'test lastname',
+            first_name: 'test first_name',
+            last_name: 'test last_name',
             email: 'test email'
         }
         return supertest(app)
@@ -130,8 +130,8 @@ describe.only('User Endpoints', function () {
         const userPasswordNotComplex = {
             username: 'test username',
             password: 'Aa123456',
-            firstname: 'test firstname',
-            lastname: 'test lastname',
+            first_name: 'test first_name',
+            last_name: 'test last_name',
             email: 'test email'
         }
         return supertest(app)
@@ -144,8 +144,8 @@ describe.only('User Endpoints', function () {
         const duplicateUser = {
             username: testUser.username,
             password: 'Aa123456!',
-            firstname: 'test firstname',
-            lastname: 'test lastname',
+            first_name: 'test first_name',
+            last_name: 'test last_name',
             email: 'test email'
         }
         return supertest(app)
@@ -159,8 +159,8 @@ describe.only('User Endpoints', function () {
             const newUser = {
             username: 'test username',
             password: 'Aa123456!',
-            firstname: 'test firstname',
-            lastname: 'test lastname',
+            first_name: 'test first_name',
+            last_name: 'test last_name',
             email: 'test email'
             }
             return supertest(app)
@@ -170,8 +170,8 @@ describe.only('User Endpoints', function () {
                 .expect(res => {
                     expect(res.body).to.have.property('id')
                     expect(res.body.username).to.eql(newUser.username)
-                    expect(res.body.firstname).to.eql(newUser.firstname)
-                    expect(res.body.lastname).to.eql(newUser.lastname)
+                    expect(res.body.first_name).to.eql(newUser.first_name)
+                    expect(res.body.last_name).to.eql(newUser.last_name)
                     expect(res.body.email).to.eql(newUser.email)
                     expect(res.body).to.not.have.property('password')
                     expect(res.headers.location).to.eql(`/api/users/${res.body.id}`)
@@ -182,8 +182,8 @@ describe.only('User Endpoints', function () {
             const newUser = {
             username: 'test username',
             password: 'Aa123456!',
-            firstname: 'test firstname',
-            lastname: 'test lastname',
+            first_name: 'test first_name',
+            last_name: 'test last_name',
             email: 'test email'
             }
             return supertest(app)
@@ -197,8 +197,8 @@ describe.only('User Endpoints', function () {
                     .first()
                     .then(row => {
                         expect(row.username).to.eql(newUser.username)
-                        expect(row.firstname).to.eql(newUser.firstname)
-                        expect(row.lastname).to.eql(newUser.lastname)
+                        expect(row.first_name).to.eql(newUser.first_name)
+                        expect(row.last_name).to.eql(newUser.last_name)
                         expect(row.email).to.eql(newUser.email)
 
                         return bcrypt.compare(newUser.password, row.password)

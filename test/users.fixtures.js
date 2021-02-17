@@ -22,16 +22,16 @@ function makeUsersArray() {
         {
             id: 1,
             username: 'test-user-1',
-            firstname: 'Test1',
-            lastname: 'User1',
+            first_name: 'Test1',
+            last_name: 'User1',
             password: 'password',
             email: 'testuser1@email.com'
         },
         {
             id: 2,
             username: 'test-user-2',
-            firstname: 'Test2',
-            lastname: 'User2',
+            first_name: 'Test2',
+            last_name: 'User2',
             password: 'password',
             email: 'testuser2@email.com'
         },

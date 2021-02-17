@@ -1,6 +1,6 @@
-const crypt = require('bcryptjs')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const config = require('../config')
+require('dotenv').config()
 
 const AuthService = {
     getUserWithUsername(db, username) {
@@ -9,20 +9,20 @@ const AuthService = {
             .first()
     },
 
-    comparePass(password, hash) {
-        return crypt.compare(password, hash)
+    comparePasswords(password, hash) {
+        return bcrypt.compare(password, hash)
     },
 
     createJwt(subject, payload) {
-        return jwt.sign(payload, config.JWT_SECRET, {
+        return jwt.sign(payload, process.env.JWT_SECRET, {
             subject,
-            expiresIn: config.JWT_EXPIRY,
+            expiresIn: process.env.JWT_EXPIRY,
             algorithm: 'HS256'
         })
     },
 
-    verify(token) {
-        return jwt.verify(token, config.JWT_SECRET, {
+    verifyJwt(token) {
+        return jwt.verify(token, process.env.JWT_SECRET, {
             algorithms: ['HS256']
         })
     }

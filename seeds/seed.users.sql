@@ -1,4 +1,4 @@
-INSERT INTO users (username, password, teamname, firstname, lastname, email)
+INSERT INTO users (username, password, team_name, first_name, last_name, email)
 VALUES
   ('demo1',
     '$2a$12$y/5sSSIDQ/HbZ3b3m6mPNeJzwmjeVuPvCcmPYYaIW8MDtgdps/soe', 'Demo Team Name 1', 'Demo1', 'User1', 'demouser1@gmail.com'),

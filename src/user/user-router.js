@@ -25,7 +25,10 @@ userRouter
         res.json({
             id: res.user.id,
             username: res.user.username,
-            teamname: res.user.teamname,
+            team_name: res.user.team_name,
+            first_name: res.user.first_name,
+            last_name: res.user.last_name,
+            email: res.user.email,
         });
     })
 
@@ -38,9 +41,9 @@ userRouter
                 .catch(next)
         })
     .post('/', jsonBodyParser, async (req, res, next) => {
-        const {username, password, teamname, firstname, lastname, email} = req.body
+        const {username, password, team_name, first_name, last_name, email} = req.body
 
-        for (const field of ['username', 'password', 'teamname', 'firstname', 'lastname', 'email'])
+        for (const field of ['username', 'password', 'team_name', 'first_name', 'last_name', 'email'])
             if (!req.body[field])
                 return res.status(400).json({error: `Missing '${field}' in request body`})
         
@@ -57,7 +60,7 @@ userRouter
 
             const hashedPassword = await UserService.hashPassword(password)
 
-            const newUser = {username, password: hashedPassword, teamname, firstname, lastname, email,}
+            const newUser = {username, password: hashedPassword, team_name, first_name, last_name, email,}
 
             const user = await UserService.insertUser(req.app.get('db'), newUser)
 

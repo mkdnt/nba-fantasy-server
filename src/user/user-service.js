@@ -44,9 +44,9 @@ const UserService = {
         return {
             id: user.id,
             username: user.username,
-            teamname: user.teamname,
-            firstname: user.firstname,
-            lastname: user.lastname,
+            team_name: user.team_name,
+            first_name: user.first_name,
+            last_name: user.last_name,
             email: user.email
         }
     },
