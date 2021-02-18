@@ -6,7 +6,7 @@ const authRouter = express.Router();
 const jsonParser = express.json();
 
 authRouter
-  .route("/token")
+  .route('/token')
   .post(jsonParser, async (req, res, next) => {
     const { username, password } = req.body;
     const loginUser = { username, password };
@@ -56,6 +56,7 @@ authRouter
     const payload = {
       user_id: req.user.id,
       name: req.user.name,
+      team_name: req.user.team_name
     };
     res.send({
       authToken: AuthService.createJwt(sub, payload),

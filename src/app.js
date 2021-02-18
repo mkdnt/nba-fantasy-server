@@ -6,7 +6,7 @@ const { CLIENT_ORIGIN } = require("./config");
 const helmet = require("helmet");
 const { NODE_ENV } = require("./config");
 const postRouter = require('./post/post-router');
-//const authRouter = require('./auth/auth-router');
+const authRouter = require('./auth/auth-router');
 const userRouter = require('./user/user-router')
 const playerRouter = require('./player/player-router')
 const errorHandler = require('./errorHandler');
@@ -19,7 +19,7 @@ app.use(helmet());
 app.use(cors({ origin: CLIENT_ORIGIN }));
 //app.use(validateBearerToken);
 app.use('/api/posts', postRouter);
-// app.use('api/auth', authRouter)
+app.use('/api/auth', authRouter)
 app.use('/api/users', userRouter)
 app.use('/api/players', playerRouter)
 app.use(errorHandler);

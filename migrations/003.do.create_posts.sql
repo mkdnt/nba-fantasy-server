@@ -3,5 +3,6 @@ CREATE TABLE posts (
     title TEXT NOT NULL,
     content TEXT,
     date_published TIMESTAMPTZ DEFAULT now() NOT NULL,
-    user_id INTEGER REFERENCES users(id) ON DELETE SET NULL
+    user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+    author TEXT NOT NULL
 );

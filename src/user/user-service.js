@@ -45,8 +45,7 @@ const UserService = {
             id: user.id,
             username: user.username,
             team_name: user.team_name,
-            first_name: user.first_name,
-            last_name: user.last_name,
+            name: user.name,
             email: user.email
         }
     },

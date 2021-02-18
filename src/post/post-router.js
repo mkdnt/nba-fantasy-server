@@ -17,8 +17,8 @@ postRouter
             .catch(next)
     })
     .post(jsonParser, (req, res, next) => {
-        const { title, content, user_id } = req.body
-        const newPost = { title, content, user_id }
+        const { title, content, user_id, author } = req.body
+        const newPost = { title, content, user_id, author }
 
         for (const [key, value] of Object.entries(newPost)) {
             if (value == null) {
@@ -56,7 +56,8 @@ postRouter
             title: xss(res.post.title),
             content: xss(res.post.content),
             date_published: res.post.date_published,
-            user_id: res.post.user_id
+            user_id: res.post.user_id,
+            author: res.post.author
         });
     })
 
@@ -81,7 +82,8 @@ postRouter
             title: xss(res.post.title),
             content: xss(res.post.content),
             date_published: res.post.date_published,
-            user_id: res.post.user_id
+            user_id: res.post.user_id,
+            author: res.post.author,
         });
     })
     .delete((req, res, next) => {
@@ -92,8 +94,8 @@ postRouter
             .catch(next);
     })
     .patch(jsonParser, (req, res, next) => {
-        const { title, content, user_id } = req.body
-        const postToUpdate = { title, content, user_id }
+        const { title, content, user_id, author } = req.body
+        const postToUpdate = { title, content, user_id, author }
 
         const numberOfValues = Object.values(postToUpdate).filter(Boolean).length
             if (numberOfValues === 0) {

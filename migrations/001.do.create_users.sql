@@ -3,7 +3,6 @@ CREATE TABLE users (
     username TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
     team_name TEXT NOT NULL,
-    first_name TEXT NOT NULL,
-    last_name TEXT NOT NULL,
-    email VARCHAR NOT NULL
+    name TEXT NOT NULL,
+    email TEXT NOT NULL
 );
