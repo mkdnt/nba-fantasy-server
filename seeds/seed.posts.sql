@@ -1,4 +1,4 @@
-INSERT INTO posts (title, content, user_id, user_username)
+INSERT INTO posts (title, content, user_id, author)
 VALUES
   ('First Post Title',
     'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur sequi sint beatae obcaecati voluptas veniam amet adipisci perferendis quo illum, dignissimos aspernatur ratione iusto, culpa quam neque impedit atque doloribus!', 1, 'demo1'),

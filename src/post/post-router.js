@@ -42,7 +42,7 @@ postRouter
     })
 
 postRouter
-  .route('/:user_id')
+  .route('/byuser/:user_id')
     .all((req, res, next) => {
         PostService.getUserPosts(req.app.get('db'), req.params.user_id)
             .then(posts => {

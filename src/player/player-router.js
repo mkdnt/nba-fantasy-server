@@ -42,7 +42,7 @@ playerRouter
     })
 
 playerRouter
-  .route('/:user_id')
+  .route('/byuser/:user_id')
     .all((req, res, next) => {
         PlayerService.getUserPlayers(req.app.get('db'), req.params.user_id)
             .then(players => {
