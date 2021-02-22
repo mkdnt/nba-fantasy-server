@@ -1,16 +1,8 @@
-INSERT INTO posts (title, content, user_id, author)
+INSERT INTO posts (title, content, date_published, user_id, author)
 VALUES
-  ('First Post Title',
-    'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur sequi sint beatae obcaecati voluptas veniam amet adipisci perferendis quo illum, dignissimos aspernatur ratione iusto, culpa quam neque impedit atque doloribus!', 1, 'demo1'),
-  ('Second Post Title',
-    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos architecto repellat, in amet soluta exercitationem perferendis eius perspiciatis praesentium voluptate nisi deleniti eaque? Rerum ea quisquam dolore, non error earum?', 1, 'demo1'),
-  ( 'Third Post Title',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum molestiae accusamus veniam consectetur tempora, corporis obcaecati ad nisi asperiores tenetur, autem magnam. Iste, architecto obcaecati tenetur quidem voluptatum ipsa quam?', 2, 'demo2'),
-    ( 'Fourth Post Title',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum molestiae accusamus veniam consectetur tempora, corporis obcaecati ad nisi asperiores tenetur, autem magnam. Iste, architecto obcaecati tenetur quidem voluptatum ipsa quam?', 2, 'demo2'),
-    ( 'Fifth Post Title',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum molestiae accusamus veniam consectetur tempora, corporis obcaecati ad nisi asperiores tenetur, autem magnam. Iste, architecto obcaecati tenetur quidem voluptatum ipsa quam?', 2, 'demo2'),
-    ( 'Sixth Post Title',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum molestiae accusamus veniam consectetur tempora, corporis obcaecati ad nisi asperiores tenetur, autem magnam. Iste, architecto obcaecati tenetur quidem voluptatum ipsa quam?', 1, 'demo1'),
-    ( 'Seventh Post Title',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum molestiae accusamus veniam consectetur tempora, corporis obcaecati ad nisi asperiores tenetur, autem magnam. Iste, architecto obcaecati tenetur quidem voluptatum ipsa quam?', 3, 'demo3');
+  ('Drop Dev?',
+    `I'm getting worried about Devonte Graham. He's had to sit for two separate chunks of games for his knee. That knee kept him out of his first season as well, so that immediately sounds like trouble. Plus, LeMelo Ball is breathing down his neck even more now. With my league having a decently deep free agent pool, I might end up dropping him. Even if I can't find someone trending up to permanently fill in (like I did when I brought Kendrick Nunn in after OG was injured), maybe I could at least rotate hotter players in and in Dev's position. I may wait another week and see how this injury goes, whether there is a specific timeline, or how he bounces back with Ball in there.`, '2021-02-18 08:16:04', 2, 'kumike'),
+    ('Josh Heating Up', `I was probably as surprised as everyone else to check who was trending and see Josh Jackson. He seemed left for dead after bottoming out in Phoenix and then treading water in Memphis (including time in the G-League). Whatever's going on in Detroit, it looks like he's found a stable home. Glad I grabbed him off the wire when I could!`, '2021-02-15 15:23:42', 2, 'kumike'),
+    ('Bye-Bye Boogie?', `Such a shame that it looks like Boogie might be traded by Houston. Seemed like he was doing well there overall, maybe returning to All-Star form. With Christian Wood out for god knows how long now (until after the break!?), it could've been something special. Don't get me wrong, I'm not going to count Boogz out yet, and he'll still be starting for me, but hopefully where he potentially ends up doesn't jeopardize that.`, '2021-02-20 04:08:15', 3, 'the_rocketeer'),
+    ('The Beard is Cooking in Brooklyn!', `So glad I didn't hesitate and took Harden in the draft. Who could have doubted? The last week has been incredible - averaging like 70+ points a game for my team. Ridiculous!`, '2021-02-22 16:04:23', 3, 'the_rocketeer'),
+    ('Draft Results', `Can't believe that I was able to get both Bron and AD in my league's draft! It's almost like this is just made up!? Their greatness will be worth having them both on and off on the same days. Let's go Lakers! Let's go me!`, '2020-12-18 23:08:15', 1, 'demo_user');

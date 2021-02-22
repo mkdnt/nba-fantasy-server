@@ -94,8 +94,8 @@ postRouter
             .catch(next);
     })
     .patch(jsonParser, (req, res, next) => {
-        const { title, content, user_id, author } = req.body
-        const postToUpdate = { title, content, user_id, author }
+        const { title, content, date_published, user_id, author } = req.body
+        const postToUpdate = { title, content, date_published, user_id, author }
 
         const numberOfValues = Object.values(postToUpdate).filter(Boolean).length
             if (numberOfValues === 0) {

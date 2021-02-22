@@ -1,6 +1,6 @@
 INSERT INTO users (username, password, team_name, name, email)
 VALUES
-  ('demo1',
-    '$2a$12$y/5sSSIDQ/HbZ3b3m6mPNeJzwmjeVuPvCcmPYYaIW8MDtgdps/soe', 'Demo Team Name 1', 'Demo1', 'demouser1@gmail.com'),
-    ('demo2', '$2a$12$y/5sSSIDQ/HbZ3b3m6mPNeJzwmjeVuPvCcmPYYaIW8MDtgdps/soe', 'Demo Team Name 2', 'Demo2', 'demouser2@gmail.com'),
-    ('demo3', '$2a$12$y/5sSSIDQ/HbZ3b3m6mPNeJzwmjeVuPvCcmPYYaIW8MDtgdps/soe', 'Demo Team Name 3', 'Demo3', 'demouser3@gmail.com');
+  ('demo_user',
+    '$2a$12$y/5sSSIDQ/HbZ3b3m6mPNeJzwmjeVuPvCcmPYYaIW8MDtgdps/soe', 'Demo Team Name', 'Demo', 'demouser1@nomail.com'),
+    ('kumike', '$2a$12$y/5sSSIDQ/HbZ3b3m6mPNeJzwmjeVuPvCcmPYYaIW8MDtgdps/soe', 'Jayhawk Reunion', 'Mike', 'demouser2@nomail.com'),
+    ('the_rocketeer', '$2a$12$y/5sSSIDQ/HbZ3b3m6mPNeJzwmjeVuPvCcmPYYaIW8MDtgdps/soe', 'Slam Funk', 'Joe', 'demouser3@nomail.com');
