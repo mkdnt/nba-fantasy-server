@@ -6,7 +6,7 @@ VALUES
   ('Stephen', 'Curry', 'Golden State Warriors', 'G', 1),
   ('Russell', 'Westbrook', 'Washington Wizards', 'G', 1),
   ('Joel', 'Embiid', 'Philadelphia 76ers', 'C', 2),
-  (`Devonte'`, 'Graham', 'Charlotte Hornets', 'G', 2),
+  ('Devonte''', 'Graham', 'Charlotte Hornets', 'G', 2),
   ('Josh', 'Jackson', 'Detroit Pistons', 'G', 2),
   ('Andrew', 'Wiggins', 'Golden State Warriors', 'G', 2),
   ('Ben', 'McLemore', 'Houston Rockets', 'G', 2),
