@@ -1,4 +1,5 @@
 module.exports = {
+  PORT: process.env.PORT,
   NODE_ENV: process.env.NODE_ENV || "development",
   DATABASE_URL: process.env.DATABASE_URL || 'postgres://iggywewzjgjjfm:88fa1a2fd5f051dc5011976122bfe3be117c66713540577d9ff56020c611305f@ec2-54-90-55-211.compute-1.amazonaws.com:5432/d3toaevshop0hn',
   TEST_DATABASE_URL: process.env.TEST_DATABASE_URL || 'postgresql://MikeDent@localhost/nbafantasytest',
