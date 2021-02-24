@@ -12,10 +12,15 @@
     page, read up on other teams from various fantasy basketball leagues to gain insight about how to improve your team
     in your own league!</p>
 
+<img align='center' src='readme_images/home.jpg' />
+
 <p>As of this version (1.0.0), the app is situated somewhere between a blog and a social network. Future versions of the
     app will incorporate commenting,
     liking, and other features to nudge it closer to social network territory. Depending on availability, other player
     stats, fantasy stats, or league formats may also be incorporated.</p>
+
+<img align='center' src='readme_images/league.jpg' />
+<img align='center' src='readme_images/new_post.jpg' />
 
 <p>This is the server side of the application which uses Node and Express to build the API. For the database setup I am
     using PostgreSQL and Knex to make queries. I have incorporated full testing for all of the endpoints in a separate
