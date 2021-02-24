@@ -11,7 +11,4 @@ app.set('db', db);
 
 app.listen(PORT, () => {
   console.log(`Express server is listening at port: ${PORT}`);
-  console.log(process.env.DATABASE_URL)
-  console.log(process.env.PORT)
-  console.log(process.env.CLIENT_ORIGIN)
 });
