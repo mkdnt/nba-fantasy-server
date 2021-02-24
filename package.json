@@ -1,5 +1,5 @@
 {
-  "name": "knex-postgres-boilerplate",
+  "name": "full-court-nba-notes",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -14,7 +14,7 @@
     "deploy": "git push heroku main"
   },
   "keywords": [],
-  "author": "",
+  "author": "mkdnt",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
