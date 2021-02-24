@@ -1,35 +1,41 @@
-# EXPRESS BOILERPLATE
+# Full Court
 
-### Get your Express project up and running easily with this boilerplate
+## Server
 
----
+<p>Full Court is a React-based app that allows users to display their fantasy basketball teams and post about their
+    progress, and read posts from fellow users.</p>
 
-## Set up
+## [Full Court Live App](https://full-court.vercel.app/)
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME) with starter packages, folders and files:
+<p>After registering, you can add players and posts to your My Team dashboard. Display the players that are on your team
+    in your fantasy basketball league. Write posts about how your players and team are doing. On the League Stories
+    page, read up on other teams from various fantasy basketball leagues to gain insight about how to improve your team
+    in your own league!</p>
 
-1. Clone this repository to your local machine `git clone https://github.com/jenna-chestnut/express-boilerplate.git NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+<p>As of this version (1.0.0), the app is situated somewhere between a blog and a social network. Future versions of the
+    app will incorporate commenting,
+    liking, and other features to nudge it closer to social network territory. Depending on availability, other player
+    stats, fantasy stats, or league formats may also be incorporated.</p>
 
----
+<p>This is the server side of the application which uses Node and Express to build the API. For the database setup I am
+    using PostgreSQL and Knex to make queries. I have incorporated full testing for all of the endpoints in a separate
+    test
+    folder.</p>
 
-## Scripts
+<p>This is a fullstack app using Heroku for server hosting and Vercel for client hosting.</p>
 
-Start the application `npm start`
+[Heroku](https://heroku.com)
 
-Start nodemon for the application `npm run dev`
+[Vercel](https://vercel.com)
 
-Run the tests `npm test`
+For API calls, the main endpoint is '/api'
+<ul>
+    <li>/users -- GET all users, POST a newly-registered user</li>
+    <li>/posts -- GET all posts, POST a new post, PATCH a post, DELETE a post; all based on post_id</li>
+    <li>/players -- GET all players, POST a new player, DELETE a player; all based on player_id</li>
+    <li>/auth -- called for authorizing user login</li>
+</ul>
 
-Run a watching test environment `npm run watch`
+<p>Please see the link below for the Full Court Client repository.</p>
 
----
-
-## Deploying
-
-When your new project is ready for deployment, add a new Heroku application with `heroku create`.  
-This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's main branch.
+### [Full Court Client](https://github.com/mkdnt/nba-fantasy-client)
